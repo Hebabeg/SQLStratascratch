@@ -35,9 +35,9 @@ Output 1:
 
 ![image](https://github.com/user-attachments/assets/630ce6cf-32f7-41bb-875b-576032563bb1)
 
-### Question 2: 
+## Question 2: 
 
-## [Calculate Average Score](https://platform.stratascratch.com/coding/10540-calculate-average-score?code_type=1)
+### [Calculate Average Score](https://platform.stratascratch.com/coding/10540-calculate-average-score?code_type=1)
 
 Table name: project_data
 
@@ -53,7 +53,8 @@ Output 2:
 
 ![image](https://github.com/user-attachments/assets/9b36ebdb-9af3-42dd-ab95-279daed67c82)
 
-### Question 3: [User Activity Count](https://platform.stratascratch.com/coding/10539-user-activity-count?code_type=1)
+## Question 3: 
+### [User Activity Count](https://platform.stratascratch.com/coding/10539-user-activity-count?code_type=1)
 
 Tables: user_profiles, activity_log
 
