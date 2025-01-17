@@ -1,4 +1,4 @@
-# SQLStratascratch - Easy
+![image](https://github.com/user-attachments/assets/a63ba9ba-e066-40d9-a187-20ff9176325b)# SQLStratascratch - Easy
 All solutions - PostgreSQL
 
 ## Question 1:
@@ -212,9 +212,92 @@ Table: los_angeles_restaurant_health_inspections
 ![image](https://github.com/user-attachments/assets/e75e28d4-0d81-48b9-839e-67c7b41affd7)
 
 
+## Question 9:
+
+### [Find the owner_name and the pe_description of facilities owned by 'BAKERY' where low-risk cases have been reported.](https://platform.stratascratch.com/coding/9697-bakery-owned-facilities?python=&code_type=1)
+
+Find the owner_name and the pe_description of facilities owned by 'BAKERY' where low-risk cases have been reported.
+
+Table: los_angeles_restaurant_health_inspections
+
+![image](https://github.com/user-attachments/assets/93af966a-15a2-4b1a-8d67-4d48e1ca3287)
+
+### **Solution 9:**
+
+    with cte as (select owner_name, pe_description, grade, facility_name from los_angeles_restaurant_health_inspections
+    where facility_name like '%BAKERY%')
+    select * from cte where pe_description like '%LOW RISK%';
 
 
+![image](https://github.com/user-attachments/assets/5119bdb6-03b3-4fae-804d-031c5fad5662)
 
+## Question 10:
+
+### [Calculates the difference between the highest salaries in the marketing and engineering departments. Output just the absolute difference in salaries.](https://platform.stratascratch.com/coding/10308-salaries-differences?python=&code_type=1)
+
+Tables: db_employee, db_dept
+
+![image](https://github.com/user-attachments/assets/77436688-7411-4d7f-b637-2bd0d1ab207c)
+
+### **Solution 10:**
+
+    with cte as (select a.salary, b.department 
+    from db_employee as a left join db_dept as b on a.department_id = b.id
+    where department = 'engineering' or department = 'marketing'
+    order by department asc)
+    
+    SELECT 
+        ABS(MAX(CASE WHEN department = 'engineering' THEN salary END) - 
+            MAX(CASE WHEN department = 'marketing' THEN salary END)) AS abs_salary_difference
+    FROM cte;
+
+
+![image](https://github.com/user-attachments/assets/97fa6170-0596-4ead-9731-64bc2e6ef4db)
+
+## Question 11:
+
+### [ Finding Updated Records](https://platform.stratascratch.com/coding/10299-finding-updated-records?python=&code_type=1)
+
+We have a table with employees and their salaries, however, some of the records are old and contain outdated salary information.
+Find the current salary of each employee assuming that salaries increase each year. Output their id, first name, last name, department ID, and current salary.
+Order your list by employee ID in ascending order.
+
+Table: ms_employee_salary
+
+![image](https://github.com/user-attachments/assets/d0126f62-1c53-44d9-a7fd-e25baa7778e6)
+
+### **Solution 11:**
+
+    SELECT DISTINCT ON (id) 
+        id, 
+        first_name, 
+        last_name, 
+        department_id, 
+        salary AS current_salary
+    FROM ms_employee_salary
+    ORDER BY id, salary DESC;
+
+![image](https://github.com/user-attachments/assets/ae9470dd-2a8b-4a7b-925b-5fb2bb8d9cac)
+
+## Question 12:
+
+### [Bikes Last Used](https://platform.stratascratch.com/coding/10176-bikes-last-used?python=&code_type=1)
+
+Find the last time each bike was in use. Output both the bike number and the date-timestamp of the bike's last use (i.e., the date-time the bike was returned). Order the results by bikes that were most recently used.
+
+Table: dc_bikeshare_q1_2012
+
+![image](https://github.com/user-attachments/assets/b072b92a-6348-4606-aaf3-0dedcd52f603)
+
+### **Solution 12:**
+
+    SELECT bike_number, 
+        max(end_time) as last_used
+    FROM dc_bikeshare_q1_2012
+    group by bike_number
+    ORDER BY last_used desc;
+
+![image](https://github.com/user-attachments/assets/985b0bfc-3195-4323-ab4c-d753bcc14694)
 
 
 
